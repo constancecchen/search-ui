@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import deepEqual from "deep-equal";
 
 import { FacetValue, FilterValue } from "./types";
@@ -18,6 +18,8 @@ function MultiCheckboxFacet({
   onSearch,
   searchPlaceholder
 }) {
+  const [count, setCount] = useState(0);
+
   return (
     <fieldset
       className={appendClassName(
@@ -85,7 +87,10 @@ function MultiCheckboxFacet({
         <button
           type="button"
           className="sui-multi-checkbox-facet__view-more"
-          onClick={onMoreClick}
+          onClick={() => {
+            onMoreClick();
+            setCount(count + 1);
+          }}
           aria-label="Show more options"
         >
           + More
